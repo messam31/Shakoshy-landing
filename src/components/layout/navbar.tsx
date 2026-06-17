@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
 	type KeyboardEvent as ReactKeyboardEvent,
 	useEffect,
@@ -12,7 +13,7 @@ import {
 import { ChevronDown } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import type { Locale } from "@/lib/i18n/dictionaries";
+import { swapLocaleInPath, type Locale } from "@/lib/i18n/dictionaries";
 import { useLanguage } from "@/lib/i18n/language-provider";
 
 const LANGUAGES: { code: Locale; label: string }[] = [
@@ -21,7 +22,8 @@ const LANGUAGES: { code: Locale; label: string }[] = [
 ];
 
 function LanguageDropdown({ className }: { className?: string }) {
-	const { locale, setLocale } = useLanguage();
+	const { locale } = useLanguage();
+	const pathname = usePathname();
 	const [open, setOpen] = useState(false);
 	const ref = useRef<HTMLDivElement>(null);
 	const triggerRef = useRef<HTMLButtonElement>(null);
@@ -51,7 +53,7 @@ function LanguageDropdown({ className }: { className?: string }) {
 	// On open, move focus to the currently selected option for keyboard users.
 	useEffect(() => {
 		if (!open) return;
-		const items = listRef.current?.querySelectorAll<HTMLButtonElement>(
+		const items = listRef.current?.querySelectorAll<HTMLAnchorElement>(
 			'[role="option"]',
 		);
 		if (!items?.length) return;
@@ -66,24 +68,18 @@ function LanguageDropdown({ className }: { className?: string }) {
 		if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
 		e.preventDefault();
 		const items = Array.from(
-			listRef.current?.querySelectorAll<HTMLButtonElement>('[role="option"]') ??
+			listRef.current?.querySelectorAll<HTMLAnchorElement>('[role="option"]') ??
 				[],
 		);
 		if (!items.length) return;
 		const active = document.activeElement as HTMLElement | null;
 		const currentIndex = items.findIndex((el) => el === active);
 		const delta = e.key === "ArrowDown" ? 1 : -1;
-		const nextIndex =
-			(currentIndex + delta + items.length) % items.length;
+		const nextIndex = (currentIndex + delta + items.length) % items.length;
 		items[nextIndex]?.focus();
 	};
 
 	const current = LANGUAGES.find((l) => l.code === locale) ?? LANGUAGES[0];
-
-	const choose = (code: Locale) => {
-		if (code !== locale) setLocale(code);
-		setOpen(false);
-	};
 
 	return (
 		<div ref={ref} className={`relative ${className ?? ""}`}>
@@ -111,15 +107,15 @@ function LanguageDropdown({ className }: { className?: string }) {
 				>
 					{LANGUAGES.map((l) => (
 						<li key={l.code}>
-							<button
-								type="button"
+							<Link
+								href={swapLocaleInPath(pathname, l.code)}
 								role="option"
 								aria-selected={l.code === locale}
-								onClick={() => choose(l.code)}
+								onClick={() => setOpen(false)}
 								className={`hover:bg-surface-cream flex min-h-11 w-full items-center px-4 py-2 text-start text-sm ${l.code === locale ? "text-primary font-medium" : "text-foreground"}`}
 							>
 								{l.label}
-							</button>
+							</Link>
 						</li>
 					))}
 				</ul>
@@ -129,10 +125,11 @@ function LanguageDropdown({ className }: { className?: string }) {
 }
 
 export function Navbar() {
+	const { locale } = useLanguage();
 	return (
 		<header className="sticky top-0 z-50 px-4 pt-6 pb-2">
 			<nav className="font-poppins bg-background mx-auto flex h-nav max-w-5xl items-center justify-between rounded-full border-0 px-4 font-normal md:px-6 lg:max-w-6xl lg:px-8">
-				<Link href="/" aria-label="Shakoshy home">
+				<Link href={`/${locale}`} aria-label="Shakoshy home">
 					<Image src="/logo.svg" alt="Shakoshy" width={172} height={34} className="h-7 w-auto md:h-8 lg:h-9 xl:h-10" priority />
 				</Link>
 
