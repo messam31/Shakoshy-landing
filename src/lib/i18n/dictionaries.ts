@@ -398,12 +398,11 @@ export function hasLocale(value: string): value is Locale {
  * "/en/foo" + "ar" -> "/ar/foo"; "/foo" + "ar" -> "/ar/foo"; "/" + "ar" -> "/ar".
  */
 export function swapLocaleInPath(pathname: string, locale: Locale): string {
-	const segments = pathname.split("/");
-	if (hasLocale(segments[1])) {
-		segments[1] = locale;
+	const segments = pathname.split("/").filter(Boolean);
+	if (hasLocale(segments[0])) {
+		segments[0] = locale;
 	} else {
-		segments.splice(1, 0, locale);
+		segments.unshift(locale);
 	}
-	const joined = segments.join("/");
-	return joined === "" ? `/${locale}` : joined;
+	return `/${segments.join("/")}`;
 }
