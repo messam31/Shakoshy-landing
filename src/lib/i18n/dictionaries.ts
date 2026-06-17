@@ -7,6 +7,14 @@ const en = {
 		closeMenu: "Close menu",
 		switchTo: "العربية",
 	},
+	meta: {
+		title: "Shakoshy — Find Trusted Service Professionals Near You",
+		description:
+			"Shakoshy connects you with verified local professionals for plumbing, electrical, AC, cleaning, carpentry and more. Post your request, receive real offers, and hire with confidence.",
+		ogTitle: "Shakoshy — Find Trusted Service Professionals Near You",
+		ogDescription:
+			"Post your request, receive offers from verified professionals, and choose the best one for your needs.",
+	},
 	hero: {
 		title: "Find Trusted Service Professionals Near You",
 		subtitle:
@@ -194,6 +202,14 @@ const ar: Dictionary = {
 		closeMenu: "إغلاق القائمة",
 		switchTo: "EN",
 	},
+	meta: {
+		title: "شاكوشي — اعثر على محترفي خدمات موثوقين بالقرب منك",
+		description:
+			"تربط شاكوشي العملاء بمحترفين محليين موثوقين للسباكة والكهرباء والتكييف والتنظيف والنجارة والمزيد. انشر طلبك، واستقبل عروضًا حقيقية، ووظّف بثقة.",
+		ogTitle: "شاكوشي — اعثر على محترفي خدمات موثوقين بالقرب منك",
+		ogDescription:
+			"انشر طلبك، واستقبل عروضًا من محترفين موثوقين، واختر الأفضل لاحتياجاتك.",
+	},
 	hero: {
 		title: "اعثر على محترفي خدمات موثوقين بالقرب منك",
 		subtitle:
@@ -369,3 +385,25 @@ export const dictionaries = { en, ar };
 
 export type Locale = keyof typeof dictionaries;
 export type { Dictionary };
+
+export const locales: Locale[] = ["en", "ar"];
+export const defaultLocale: Locale = "en";
+
+export function hasLocale(value: string): value is Locale {
+	return value in dictionaries;
+}
+
+/**
+ * Swap (or insert) the leading locale segment of a path, preserving the rest.
+ * "/en/foo" + "ar" -> "/ar/foo"; "/foo" + "ar" -> "/ar/foo"; "/" + "ar" -> "/ar".
+ */
+export function swapLocaleInPath(pathname: string, locale: Locale): string {
+	const segments = pathname.split("/");
+	if (hasLocale(segments[1])) {
+		segments[1] = locale;
+	} else {
+		segments.splice(1, 0, locale);
+	}
+	const joined = segments.join("/");
+	return joined === "" ? `/${locale}` : joined;
+}
