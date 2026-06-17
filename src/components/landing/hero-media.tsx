@@ -37,7 +37,7 @@ export function HeroMedia({ className }: { className?: string }) {
 			<button
 				type="button"
 				onClick={() => openAppStore("worker")}
-				className="font-poppins absolute bottom-0 right-0 z-10 flex h-[10%] w-[37%] cursor-pointer items-center justify-center gap-[0.4em] rounded-full bg-primary text-center text-[0.6rem] xs:text-cta text-primary-foreground transition-all hover:-translate-y-0.5 hover:shadow-md"
+				className="font-poppins absolute bottom-0 right-0 z-10 flex h-[10%] min-h-11 w-[37%] cursor-pointer items-center justify-center gap-[0.4em] rounded-full bg-primary text-center text-[0.6rem] xs:text-cta text-primary-foreground transition-all hover:-translate-y-0.5 hover:shadow-md"
 			>
 				{t.hero.becomeWorker}
 				<ArrowRight className="size-[1.4em] shrink-0 sm:size-[1.1em] rtl:rotate-180" />

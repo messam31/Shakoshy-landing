@@ -23,7 +23,7 @@ function ServiceCard({ label, src }: { label: string; src: string }) {
     <div className="flex flex-1 justify-center lg:basis-0">
       <div className="border-card-border flex w-full max-w-52 flex-col items-center gap-1 rounded-2xl border border-dashed bg-white py-4 md:max-w-none lg:px-6 lg:py-6">
         <div className="relative h-28 w-full">
-          <Image src={src} alt={label} fill sizes="(max-width: 1440px) 20vw, 220px" className="object-contain" />
+          <Image src={src} alt="" fill sizes="(max-width: 1440px) 20vw, 220px" className="object-contain" />
         </div>
         <span className="font-poppins text-foreground text-sm font-medium">{label}</span>
       </div>

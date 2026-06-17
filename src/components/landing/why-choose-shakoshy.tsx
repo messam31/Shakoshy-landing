@@ -47,7 +47,7 @@ export function WhyChooseShakoshy() {
 						{/* Text Stack: Removed max-w from here so the heading has full runway */}
 						<div className="flex flex-1 flex-col gap-4 z-10 relative">
 							{/* Heading remains completely free to stay on one line */}
-							<h3 className="text-card-title font-bold w-full leading-tight whitespace-nowrap">
+							<h3 className="text-card-title font-bold w-full leading-tight xl:whitespace-nowrap">
 								{cards[0].title}
 							</h3>
 
@@ -130,14 +130,14 @@ export function WhyChooseShakoshy() {
 					{/* Card 4 — white card; title on top, text + image side by side */}
 					<Reveal
 						delay={0}
-						className="shadow-card flex flex-col gap-4 overflow-hidden rounded-2xl bg-surface-peach p-3 xl:col-span-3 xl:p-4 xl:aspect-auto min-h-[200px]"
+						className="shadow-card flex flex-col gap-4 overflow-hidden rounded-2xl bg-surface-peach p-3 xl:col-span-3 xl:p-4 xl:aspect-auto min-h-50"
 					>
 						<h3 className="text-card-title font-bold md:whitespace-nowrap xl:whitespace-normal">
 							{cards[3].title}
 						</h3>
 						{/* Text + image side by side, sharing the width, centered */}
 						<div className="flex flex-1 items-center gap-4">
-							<p className="font-poppins flex-1 text-gray-700 text-card-body font-medium leading-loose xl:text-sm">
+							<p className="font-poppins flex-1 text-foreground text-card-body font-medium leading-loose xl:text-sm">
 								{cards[3].description}
 							</p>
 
@@ -181,10 +181,10 @@ export function WhyChooseShakoshy() {
 					{/* Card 6 — image absolute bottom-right — black background, white text */}
 					<Reveal
 						delay={0.16}
-						className="shadow-card relative overflow-hidden rounded-2xl bg-[#212121] p-6 xl:col-span-4 xl:aspect-auto min-h-[263px]"
+						className="shadow-card relative overflow-hidden rounded-2xl bg-surface-dark p-6 xl:col-span-4 xl:aspect-auto min-h-bento-row"
 					>
 						<div className="flex w-1/2 flex-col gap-4 md:w-4/5 xl:w-full">
-							<h3 className="text-card-title font-bold text-white whitespace-nowrap">
+							<h3 className="text-card-title font-bold text-white xl:whitespace-nowrap">
 								{cards[5].title}
 							</h3>
 							<p className="text-sm text-white leading-loose md:text-xl md:ltr:leading-snug xl:text-xs xl:leading-normal">

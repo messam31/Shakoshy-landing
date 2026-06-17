@@ -54,11 +54,15 @@ export function Highlighter({
     let resizeObserver: ResizeObserver | null = null
 
     if (shouldShow && element) {
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches
+
       const annotationConfig = {
         type: action,
         color,
         strokeWidth,
-        animationDuration,
+        animationDuration: prefersReducedMotion ? 0 : animationDuration,
         iterations,
         padding,
         multiline,

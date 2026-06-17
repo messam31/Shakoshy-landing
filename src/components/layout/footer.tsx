@@ -9,7 +9,9 @@ const FOOTER_LINKS = [
 	{ href: "#how-it-works", key: "howItWorks" },
 	{ href: "#categories", key: "categories" },
 	{ href: "#professionals", key: "professionals" },
-	{ href: "#top", key: "about" },
+	{ href: "#top", key: "about" }, // #top = hero section (valid)
+	// FIXME: no element with id="contact" exists on the page yet. Broken anchor.
+	// Out of scope to add a contact section here; wire up once one exists.
 	{ href: "#contact", key: "contact" },
 ] as const;
 
@@ -54,7 +56,7 @@ export function Footer() {
 						<a
 							key={link.href}
 							href={link.href}
-							className="text-muted-foreground hover:text-foreground text-base"
+							className="text-muted-foreground hover:text-foreground inline-flex min-h-11 items-center text-base"
 						>
 							{t.footer.links[link.key]}
 						</a>

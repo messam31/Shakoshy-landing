@@ -7,6 +7,7 @@ import {
 	useEffect,
 	useState,
 } from "react";
+import { MotionConfig } from "motion/react";
 
 import { dictionaries, type Dictionary, type Locale } from "./dictionaries";
 
@@ -55,7 +56,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 		<LanguageContext.Provider
 			value={{ locale, setLocale, toggle, t: dictionaries[locale] }}
 		>
-			{children}
+			<MotionConfig reducedMotion="user">{children}</MotionConfig>
 		</LanguageContext.Provider>
 	);
 }

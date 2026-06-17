@@ -25,12 +25,12 @@ const rowVariants: Variants = {
 
 const slideFrom = (x: number): Variants => ({
 	hidden: { opacity: 0, x },
-	show: { opacity: 1, x: 0, transition: { duration: 1.3, ease: "easeOut" } },
+	show: { opacity: 1, x: 0, transition: { duration: 0.7, ease: "easeOut" } },
 });
 
 const slideUp: Variants = {
 	hidden: { opacity: 0, y: 48 },
-	show: { opacity: 1, y: 0, transition: { duration: 2.2, ease: "easeOut" } },
+	show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
 };
 
 function useIsMobile() {
@@ -95,10 +95,10 @@ function AppShowcase({
 					<span className="text-base font-medium lg:max-xl:text-lg">
 						{label}
 					</span>
-					<p className="max-w-32 text-xs font-normal text-white/70 sm:max-w-none lg:max-xl:text-sm">
+					<p className="max-w-32 text-xs font-normal text-white/80 sm:max-w-none lg:max-xl:text-sm">
 						{description}
 					</p>
-					<div className="mt-3 flex flex-col items-center gap-2">
+					<div className="mt-3 flex flex-col items-center gap-1">
 						{appBadges.map(({ platform, src, alt }) => (
 							<a
 								key={platform}
@@ -106,15 +106,17 @@ function AppShowcase({
 								target="_blank"
 								rel="noopener noreferrer"
 								aria-label={alt}
-								className="relative block h-8 w-28 lg:max-xl:h-9 lg:max-xl:w-32"
+								className="flex min-h-11 w-28 items-center py-2 lg:max-xl:w-32"
 							>
-								<Image
-									src={src}
-									alt={alt}
-									fill
-									sizes="128px"
-									className="object-contain"
-								/>
+								<span className="relative block h-8 w-full lg:max-xl:h-9">
+									<Image
+										src={src}
+										alt={alt}
+										fill
+										sizes="128px"
+										className="object-contain"
+									/>
+								</span>
 							</a>
 						))}
 					</div>
@@ -162,7 +164,7 @@ export function DownloadApp() {
 					</h2>
 					<p
 						dir={locale === "ar" ? "rtl" : "ltr"}
-						className="font-normal text-white/70"
+						className="font-normal text-white/80"
 					>
 						{t.downloadApp.subtitle}
 					</p>

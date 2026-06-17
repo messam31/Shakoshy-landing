@@ -34,12 +34,12 @@ const en = {
 			{
 				title: "2. Receive Real Offers",
 				description:
-					"give me just the illustration without any backgrounds, with transparent background, PNG image with a very high quality , just this illustration without any text",
+					"Nearby verified professionals send you real offers with their price, so you can compare options within minutes.",
 			},
 			{
 				title: "3. Choose the Best Worker",
 				description:
-					"Tell us what you need. Describe your service request, add your location, and provide any details that help workers understand the job.",
+					"Review profiles, ratings, and genuine customer reviews, then pick the professional you trust at the price that fits.",
 			},
 			{
 				title: "4. Get the Job Done",
@@ -137,26 +137,26 @@ const en = {
 			{
 				title: "How Much Does Plumbing Repair Cost?",
 				description:
-					"Plumbing costs can vary based on the issue, parts needed, and urgency. Learn what affects the price of leaks, faucets, drains, and pipe repairs.",
+					"Plumbing costs vary based on the issue, parts needed, and urgency. Learn what affects the price of leaks, faucets, drains, and pipe repairs.",
 				estimate: "200–1200 EGP",
 				category: "Plumbing",
 				readTime: "4 min read",
 			},
 			{
-				title: "How Much Does Plumbing Repair Cost?",
+				title: "What to Expect from an AC Service Visit",
 				description:
-					"Plumbing costs can vary based on the issue, parts needed, and urgency. Learn what affects the price of leaks, faucets, drains, and pipe repairs.",
-				estimate: "200–1200 EGP",
-				category: "Plumbing",
-				readTime: "4 min read",
+					"From routine cleaning to gas refills and full installs, here's how AC pricing works and how to spot a fair offer before you book.",
+				estimate: "150–900 EGP",
+				category: "AC Services",
+				readTime: "5 min read",
 			},
 			{
-				title: "How Much Does Plumbing Repair Cost?",
+				title: "Hiring an Electrician: A Quick Cost Guide",
 				description:
-					"Plumbing costs can vary based on the issue, parts needed, and urgency. Learn what affects the price of leaks, faucets, drains, and pipe repairs.",
-				estimate: "200–1200 EGP",
-				category: "Plumbing",
-				readTime: "4 min read",
+					"Wiring faults, new outlets, and panel upgrades each carry different rates. Understand what drives the price of safe electrical work.",
+				estimate: "100–800 EGP",
+				category: "Electrical Works",
+				readTime: "3 min read",
 			},
 		],
 	},
@@ -221,12 +221,12 @@ const ar: Dictionary = {
 			{
 				title: "٢. استقبل عروضًا حقيقية",
 				description:
-					"أعطني الرسم التوضيحي فقط بدون أي خلفيات، بخلفية شفافة، صورة PNG بجودة عالية جدًا، هذا الرسم التوضيحي فقط بدون أي نص",
+					"يرسل لك المحترفون الموثوقون القريبون عروضًا حقيقية بأسعارهم، لتقارن بين الخيارات خلال دقائق.",
 			},
 			{
 				title: "٣. اختر أفضل عامل",
 				description:
-					"أخبرنا بما تحتاجه. صِف طلب الخدمة، وأضف موقعك، وقدّم أي تفاصيل تساعد العمال على فهم المهمة.",
+					"اطّلع على الملفات والتقييمات وآراء العملاء الحقيقية، ثم اختر المحترف الذي تثق به بالسعر الذي يناسبك.",
 			},
 			{
 				title: "٤. أنجز المهمة",
@@ -327,20 +327,20 @@ const ar: Dictionary = {
 				readTime: "قراءة ٤ دقائق",
 			},
 			{
-				title: "كم تكلفة إصلاح السباكة؟",
+				title: "ماذا تتوقع من زيارة صيانة التكييف؟",
 				description:
-					"تختلف تكاليف السباكة حسب المشكلة والقطع المطلوبة ومدى الإلحاح. تعرّف على ما يؤثر في سعر إصلاح التسريبات والحنفيات والمصارف والأنابيب.",
-				estimate: "٢٠٠–١٢٠٠ ج.م",
-				category: "السباكة",
-				readTime: "قراءة ٤ دقائق",
+					"من التنظيف الدوري إلى شحن الغاز والتركيب الكامل، إليك كيف تُحتسب أسعار التكييف وكيف تميّز العرض العادل قبل الحجز.",
+				estimate: "١٥٠–٩٠٠ ج.م",
+				category: "خدمات التكييف",
+				readTime: "قراءة ٥ دقائق",
 			},
 			{
-				title: "كم تكلفة إصلاح السباكة؟",
+				title: "توظيف كهربائي: دليل سريع للتكلفة",
 				description:
-					"تختلف تكاليف السباكة حسب المشكلة والقطع المطلوبة ومدى الإلحاح. تعرّف على ما يؤثر في سعر إصلاح التسريبات والحنفيات والمصارف والأنابيب.",
-				estimate: "٢٠٠–١٢٠٠ ج.م",
-				category: "السباكة",
-				readTime: "قراءة ٤ دقائق",
+					"أعطال الأسلاك والمنافذ الجديدة وترقية اللوحات لكل منها سعره. افهم ما يحدد تكلفة الأعمال الكهربائية الآمنة.",
+				estimate: "١٠٠–٨٠٠ ج.م",
+				category: "الأعمال الكهربائية",
+				readTime: "قراءة ٣ دقائق",
 			},
 		],
 	},

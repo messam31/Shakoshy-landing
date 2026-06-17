@@ -51,17 +51,24 @@ export function GetJobDone() {
 		>
 			<div className="mx-auto flex max-w-7xl flex-col items-center gap-20 px-6">
 				{/* Toggle */}
-				<div className="bg-muted flex w-fit items-center gap-1 rounded-full p-1.5">
+				<div
+					role="tablist"
+					className="bg-muted flex w-fit items-center gap-1 rounded-full p-1.5"
+				>
 					{tabIds.map((id) => (
 						<button
 							key={id}
 							type="button"
+							role="tab"
+							id={`get-job-done-tab-${id}`}
+							aria-selected={active === id}
+							aria-controls={`get-job-done-panel-${id}`}
 							onClick={() => {
 								setSettled(false);
 								setActive(id);
 							}}
 							className={cn(
-								"w-40 cursor-pointer rounded-full px-5 py-2 text-center text-base transition-colors outline-none focus-visible:outline-none",
+								"flex min-h-11 w-40 cursor-pointer items-center justify-center rounded-full px-5 py-2 text-center text-base transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
 								active === id
 									? "bg-foreground text-background"
 									: "text-foreground hover:text-foreground/70",
@@ -73,7 +80,12 @@ export function GetJobDone() {
 				</div>
 
 				{/* Panel */}
-				<div className="grid w-full items-center gap-10 lg:grid-cols-2">
+				<div
+					role="tabpanel"
+					id={`get-job-done-panel-${active}`}
+					aria-labelledby={`get-job-done-tab-${active}`}
+					className="grid w-full items-center gap-10 lg:grid-cols-2"
+				>
 					{/* Copy + CTA */}
 					<motion.div
 						key={`copy-${active}`}

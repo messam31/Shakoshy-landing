@@ -38,10 +38,10 @@ function StepCard({ title, description, image }: Step) {
 				<div className="relative aspect-square w-full overflow-hidden rounded-xl bg-white">
 					<Image
 						src={image}
-						alt={title}
+						alt=""
 						fill
 						sizes="(max-width: 768px) 50vw, 25vw"
-						className="object-contain p-0"
+						className="object-contain"
 					/>
 				</div>
 			</div>
@@ -73,7 +73,7 @@ export function HowItWorks() {
 					</Highlighter>
 					{t.howItWorks.headingSuffix}
 				</h2>
-				<p className="mx-auto mt-4 w-4/5 font-normal text-foreground lg:w-auto lg:whitespace-nowrap">
+				<p className="mx-auto mt-4 w-4/5 font-normal text-balance text-foreground lg:w-auto">
 					{t.howItWorks.subtitle}
 				</p>
 			</div>
