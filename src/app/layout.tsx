@@ -71,6 +71,56 @@ export const metadata: Metadata = {
   },
 };
 
+const serviceTypes = [
+  "Plumbing",
+  "Electrical Works",
+  "AC Services",
+  "Cleaning",
+  "Carpentry",
+  "Painting",
+  "Aluminum & Glass",
+  "Moving & Transport",
+  "Flooring & Tiling",
+  "Roof Repair",
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "Shakoshy",
+      url: siteUrl,
+      logo: `${siteUrl}/logo.svg`,
+      description:
+        "Shakoshy connects customers with verified local service professionals across Egypt — from plumbing and electrical to AC, cleaning and carpentry.",
+      areaServed: { "@type": "Country", name: "Egypt" },
+      sameAs: [
+        "https://x.com/shakoshyllc",
+        "https://www.instagram.com/shakoshy.eg",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "Shakoshy",
+      inLanguage: ["en", "ar"],
+      publisher: { "@id": `${siteUrl}/#organization` },
+    },
+    {
+      "@type": "Service",
+      "@id": `${siteUrl}/#service`,
+      serviceType: serviceTypes,
+      provider: { "@id": `${siteUrl}/#organization` },
+      areaServed: { "@type": "Country", name: "Egypt" },
+      description:
+        "On-demand household services from verified professionals: post a request, receive real offers, and hire with confidence.",
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -88,6 +138,12 @@ export default function RootLayout({
       )}
     >
       <body className="flex min-h-full flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+          }}
+        />
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
