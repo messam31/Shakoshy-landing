@@ -36,6 +36,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local claude settings + impeccable runtime cache
+.claude/settings.local.json
+.impeccable/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
