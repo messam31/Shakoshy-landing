@@ -2,7 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import {
+	type KeyboardEvent as ReactKeyboardEvent,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
 
 import { ChevronDown } from "lucide-react";
 
@@ -20,6 +25,7 @@ function LanguageDropdown({ className }: { className?: string }) {
 	const [open, setOpen] = useState(false);
 	const ref = useRef<HTMLDivElement>(null);
 	const triggerRef = useRef<HTMLButtonElement>(null);
+	const listRef = useRef<HTMLUListElement>(null);
 
 	useEffect(() => {
 		if (!open) return;
@@ -41,6 +47,36 @@ function LanguageDropdown({ className }: { className?: string }) {
 			document.removeEventListener("keydown", onKeyDown);
 		};
 	}, [open]);
+
+	// On open, move focus to the currently selected option for keyboard users.
+	useEffect(() => {
+		if (!open) return;
+		const items = listRef.current?.querySelectorAll<HTMLButtonElement>(
+			'[role="option"]',
+		);
+		if (!items?.length) return;
+		const selected =
+			Array.from(items).find(
+				(el) => el.getAttribute("aria-selected") === "true",
+			) ?? items[0];
+		selected.focus();
+	}, [open]);
+
+	const onListKeyDown = (e: ReactKeyboardEvent<HTMLUListElement>) => {
+		if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+		e.preventDefault();
+		const items = Array.from(
+			listRef.current?.querySelectorAll<HTMLButtonElement>('[role="option"]') ??
+				[],
+		);
+		if (!items.length) return;
+		const active = document.activeElement as HTMLElement | null;
+		const currentIndex = items.findIndex((el) => el === active);
+		const delta = e.key === "ArrowDown" ? 1 : -1;
+		const nextIndex =
+			(currentIndex + delta + items.length) % items.length;
+		items[nextIndex]?.focus();
+	};
 
 	const current = LANGUAGES.find((l) => l.code === locale) ?? LANGUAGES[0];
 
@@ -67,8 +103,10 @@ function LanguageDropdown({ className }: { className?: string }) {
 			</Button>
 			{open && (
 				<ul
+					ref={listRef}
 					role="listbox"
 					aria-label="Select language"
+					onKeyDown={onListKeyDown}
 					className="shadow-card bg-popover absolute end-0 z-50 mt-2 min-w-36 overflow-hidden rounded-2xl border border-border py-1"
 				>
 					{LANGUAGES.map((l) => (

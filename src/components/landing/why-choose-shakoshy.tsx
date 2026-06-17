@@ -69,7 +69,7 @@ export function WhyChooseShakoshy() {
 						<div className="absolute end-0 bottom-0 h-full w-[42%] sm:w-[52%] xl:w-[46%] sm:rtl:w-[46%] xl:rtl:w-[42%] pointer-events-none z-0">
 							<Image
 								src="/WorkerFinalImage.webp"
-								alt={cards[0].title}
+								alt=""
 								fill
 								sizes="(min-width: 1280px) 22vw, (min-width: 640px) 20vw, 40vw"
 								className="object-contain object-right-bottom rtl:object-left-bottom"
@@ -92,7 +92,7 @@ export function WhyChooseShakoshy() {
 						<div className="relative mt-1 w-full flex-1 overflow-hidden xl:mt-2">
 							<Image
 								src="/choose-2.webp"
-								alt={cards[1].title}
+								alt=""
 								fill
 								sizes="(min-width: 1280px) 343px, (min-width: 640px) 50vw, 100vw"
 								className="object-contain object-bottom scale-100"
@@ -116,7 +116,7 @@ export function WhyChooseShakoshy() {
 						<div className="relative w-full flex-1 overflow-hidden">
 							<Image
 								src="/choose-3.webp"
-								alt={cards[2].title}
+								alt=""
 								fill
 								sizes="(min-width: 1280px) 470px, (min-width: 640px) 50vw, 100vw"
 								className="object-contain object-bottom scale-100"
@@ -145,7 +145,7 @@ export function WhyChooseShakoshy() {
 							<div className="relative aspect-square w-1/2 shrink-0">
 								<Image
 									src="/choose-4.webp"
-									alt={cards[3].title}
+									alt=""
 									fill
 									sizes="(min-width: 1280px) 181px, (min-width: 640px) 25vw, 50vw"
 									className="object-contain"
@@ -170,7 +170,7 @@ export function WhyChooseShakoshy() {
 						<div className="relative mt-2 w-full flex-1 overflow-hidden">
 							<Image
 								src="/choose-5.webp"
-								alt={cards[4].title}
+								alt=""
 								fill
 								sizes="(min-width: 1280px) 286px, (min-width: 640px) 50vw, 100vw"
 								className="object-contain"
@@ -196,7 +196,7 @@ export function WhyChooseShakoshy() {
 						<div className="absolute -end-2 -bottom-2 z-10 h-3/5 w-3/5 overflow-hidden">
 							<Image
 								src="/choose-6.webp"
-								alt={cards[5].title}
+								alt=""
 								fill
 								sizes="(min-width: 1280px) 415px, (min-width: 640px) 40vw, 80vw"
 								className="object-contain"

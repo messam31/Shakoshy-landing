@@ -30,7 +30,7 @@ export function HeroDesktop({ className }: { className?: string }) {
 				>
 					<motion.h1
 						variants={item}
-						className="font-poppins text-h1 font-bold tracking-tight text-balance text-foreground leading-relaxed"
+						className="font-poppins text-h1 font-bold tracking-tight text-balance text-foreground leading-tight"
 					>
 						{t.hero.title}
 					</motion.h1>

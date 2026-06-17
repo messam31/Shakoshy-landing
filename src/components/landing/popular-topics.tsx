@@ -24,7 +24,7 @@ export function PopularTopics() {
 				<div className="grid gap-8 md:grid-cols-3">
 					{articles.map((article, i) => (
 						<Reveal key={i} x={80} y={0} delay={i * 0.15} className="h-full">
-							<article className="shadow-card flex h-full flex-col overflow-hidden rounded-2xl bg-white">
+							<article className="shadow-card flex h-full flex-col overflow-hidden rounded-2xl bg-card">
 								<div className="relative aspect-16/10 w-full">
 									<Image
 										src={article.image}

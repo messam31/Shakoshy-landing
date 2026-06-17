@@ -99,15 +99,13 @@ function AppShowcase({
 						{description}
 					</p>
 					<div className="mt-3 flex flex-col items-center gap-1">
-						{appBadges.map(({ platform, src, alt }) => (
-							<a
-								key={platform}
-								href={storeLinks[app][platform]}
-								target="_blank"
-								rel="noopener noreferrer"
-								aria-label={alt}
-								className="flex min-h-11 w-28 items-center py-2 lg:max-xl:w-32"
-							>
+						{appBadges.map(({ platform, src, alt }) => {
+							const href = storeLinks[app][platform];
+							// Placeholder ("#") links go nowhere: render a
+							// non-interactive, non-focusable badge instead of a
+							// link to nowhere (a11y: links must have a destination).
+							const isPlaceholder = !href || href === "#";
+							const badgeImage = (
 								<span className="relative block h-8 w-full lg:max-xl:h-9">
 									<Image
 										src={src}
@@ -117,8 +115,35 @@ function AppShowcase({
 										className="object-contain"
 									/>
 								</span>
-							</a>
-						))}
+							);
+
+							if (isPlaceholder) {
+								return (
+									<span
+										key={platform}
+										aria-label={`${alt} (coming soon)`}
+										aria-disabled="true"
+										title="Coming soon"
+										className="flex min-h-11 w-28 cursor-default items-center py-2 opacity-60 lg:max-xl:w-32"
+									>
+										{badgeImage}
+									</span>
+								);
+							}
+
+							return (
+								<a
+									key={platform}
+									href={href}
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label={alt}
+									className="flex min-h-11 w-28 items-center py-2 lg:max-xl:w-32"
+								>
+									{badgeImage}
+								</a>
+							);
+						})}
 					</div>
 				</div>
 			</motion.div>

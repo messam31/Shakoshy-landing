@@ -35,18 +35,18 @@ function StepCard({ title, description, image }: Step) {
 	return (
 		<div className="flex flex-col items-center gap-4 text-center">
 			<div className="w-full rounded-2xl bg-surface-peach-soft p-8">
-				<div className="relative aspect-square w-full overflow-hidden rounded-xl bg-white">
+				<div className="relative aspect-square w-full overflow-hidden rounded-xl bg-card">
 					<Image
 						src={image}
 						alt=""
 						fill
-						sizes="(max-width: 768px) 50vw, 25vw"
+						sizes="(max-width: 639px) 100vw, (max-width: 1279px) 50vw, 25vw"
 						className="object-contain"
 					/>
 				</div>
 			</div>
-			<h3 className="text-xl font-semibold">{title}</h3>
-			<p className="text-muted-foreground text-sm">{description}</p>
+			<h3 className="text-card-title font-semibold">{title}</h3>
+			<p className="text-muted-foreground text-card-body">{description}</p>
 		</div>
 	);
 }

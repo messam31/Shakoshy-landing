@@ -21,7 +21,7 @@ const serviceImages = [
 function ServiceCard({ label, src }: { label: string; src: string }) {
   return (
     <div className="flex flex-1 justify-center lg:basis-0">
-      <div className="border-card-border flex w-full max-w-52 flex-col items-center gap-1 rounded-2xl border border-dashed bg-white py-4 md:max-w-none lg:px-6 lg:py-6">
+      <div className="border-card-border bg-card flex w-full max-w-52 flex-col items-center gap-1 rounded-2xl border border-dashed py-4 md:max-w-none lg:px-6 lg:py-6">
         <div className="relative h-28 w-full">
           <Image src={src} alt="" fill sizes="(max-width: 1440px) 20vw, 220px" className="object-contain" />
         </div>

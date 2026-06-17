@@ -11,6 +11,8 @@ export function HeroMedia({ className }: { className?: string }) {
 	const t = useT();
 	return (
 		<motion.div
+			role="img"
+			aria-label={t.hero.imageAlt}
 			className={`@container relative aspect-photo w-full rounded-2xl bg-cover bg-center ${className ?? ""}`}
 			style={{ backgroundImage: "url('/hero-worker.webp')" }}
 			initial={{ opacity: 0, x: 40 }}

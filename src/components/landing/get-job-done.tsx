@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { motion } from "motion/react";
 import {
@@ -40,14 +40,40 @@ export function GetJobDone() {
 	// otherwise rough-notation measures a mid-animation (offset) position.
 	const [settled, setSettled] = useState(false);
 	const tabIds = Object.keys(tabsMeta) as TabId[];
+	const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 	const tab = t.getJobDone.tabs[active];
 	const meta = tabsMeta[active];
 	const isWorker = active === "workers";
 
+	const selectTab = (id: TabId) => {
+		setSettled(false);
+		setActive(id);
+	};
+
+	// WAI-ARIA tabs pattern: Arrow keys move focus and activate the tab.
+	// Direction is mirrored in RTL so Left/Right map to visual order.
+	const onTabKeyDown = (e: React.KeyboardEvent, index: number) => {
+		const rtl =
+			typeof document !== "undefined" &&
+			document.documentElement.dir === "rtl";
+		const forward = rtl ? "ArrowLeft" : "ArrowRight";
+		const backward = rtl ? "ArrowRight" : "ArrowLeft";
+		let next = index;
+		if (e.key === forward) next = (index + 1) % tabIds.length;
+		else if (e.key === backward)
+			next = (index - 1 + tabIds.length) % tabIds.length;
+		else if (e.key === "Home") next = 0;
+		else if (e.key === "End") next = tabIds.length - 1;
+		else return;
+		e.preventDefault();
+		selectTab(tabIds[next]);
+		tabRefs.current[next]?.focus();
+	};
+
 	return (
 		<section
 			id="professionals"
-			className="font-poppins bg-white scroll-mt-nav py-section"
+			className="font-poppins bg-background scroll-mt-nav py-section"
 		>
 			<div className="mx-auto flex max-w-7xl flex-col items-center gap-20 px-6">
 				{/* Toggle */}
@@ -55,18 +81,20 @@ export function GetJobDone() {
 					role="tablist"
 					className="bg-muted flex w-fit items-center gap-1 rounded-full p-1.5"
 				>
-					{tabIds.map((id) => (
+					{tabIds.map((id, index) => (
 						<button
 							key={id}
+							ref={(el) => {
+								tabRefs.current[index] = el;
+							}}
 							type="button"
 							role="tab"
 							id={`get-job-done-tab-${id}`}
 							aria-selected={active === id}
 							aria-controls={`get-job-done-panel-${id}`}
-							onClick={() => {
-								setSettled(false);
-								setActive(id);
-							}}
+							tabIndex={active === id ? 0 : -1}
+							onClick={() => selectTab(id)}
+							onKeyDown={(e) => onTabKeyDown(e, index)}
 							className={cn(
 								"flex min-h-11 w-40 cursor-pointer items-center justify-center rounded-full px-5 py-2 text-center text-base transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
 								active === id
