@@ -1,17 +1,15 @@
 "use client";
 
-import {
-	createContext,
-	useCallback,
-	useContext,
-	useEffect,
-	useState,
-} from "react";
+import { createContext, useCallback, useContext } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { MotionConfig } from "motion/react";
 
-import { dictionaries, type Dictionary, type Locale } from "./dictionaries";
-
-const STORAGE_KEY = "shakoshy-locale";
+import {
+	dictionaries,
+	swapLocaleInPath,
+	type Dictionary,
+	type Locale,
+} from "./dictionaries";
 
 type LanguageContextValue = {
 	locale: Locale;
@@ -22,31 +20,23 @@ type LanguageContextValue = {
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
-function applyDocumentLocale(locale: Locale) {
-	const root = document.documentElement;
-	root.lang = locale;
-	root.dir = locale === "ar" ? "rtl" : "ltr";
-}
+export function LanguageProvider({
+	locale,
+	children,
+}: {
+	locale: Locale;
+	children: React.ReactNode;
+}) {
+	const router = useRouter();
+	const pathname = usePathname();
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-	const [locale, setLocaleState] = useState<Locale>("en");
-
-	useEffect(() => {
-		// localStorage is unavailable during SSR, so the stored locale must be
-		// read after mount and synced into state to avoid a hydration mismatch.
-		const stored = window.localStorage.getItem(STORAGE_KEY);
-		if (stored === "en" || stored === "ar") {
-			// eslint-disable-next-line react-hooks/set-state-in-effect
-			setLocaleState(stored);
-			applyDocumentLocale(stored);
-		}
-	}, []);
-
-	const setLocale = useCallback((next: Locale) => {
-		setLocaleState(next);
-		window.localStorage.setItem(STORAGE_KEY, next);
-		applyDocumentLocale(next);
-	}, []);
+	const setLocale = useCallback(
+		(next: Locale) => {
+			if (next === locale) return;
+			router.push(swapLocaleInPath(pathname, next));
+		},
+		[locale, pathname, router],
+	);
 
 	const toggle = useCallback(() => {
 		setLocale(locale === "en" ? "ar" : "en");
