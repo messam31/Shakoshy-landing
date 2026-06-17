@@ -70,6 +70,14 @@ export async function generateMetadata({
 			description: m.ogDescription,
 			locale: isAr ? "ar_EG" : "en_US",
 			alternateLocale: isAr ? "en_US" : "ar_EG",
+			images: [
+				{
+					url: "/opengraph-image.png",
+					width: 1200,
+					height: 630,
+					alt: m.ogTitle,
+				},
+			],
 		},
 		twitter: {
 			card: "summary_large_image",
@@ -77,6 +85,7 @@ export async function generateMetadata({
 			creator: "@shakoshyllc",
 			title: m.ogTitle,
 			description: m.ogDescription,
+			images: ["/opengraph-image.png"],
 		},
 		robots: {
 			index: true,
