@@ -115,6 +115,9 @@
   --color-surface-peach: var(--surface-peach);
   --color-surface-peach-soft: var(--surface-peach-soft);
   --color-surface-cream: var(--surface-cream);
+
+  /* Article body secondary text (Figma Grey/600) */
+  --color-article-muted: #5d5d5d;
 }
 
 :root {

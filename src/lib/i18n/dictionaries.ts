@@ -141,32 +141,6 @@ const en = {
 		heading: "Popular Topics",
 		estimatedCost: "Estimated cost:",
 		readMore: "Read More",
-		articles: [
-			{
-				title: "How Much Does Plumbing Repair Cost?",
-				description:
-					"Plumbing costs vary based on the issue, parts needed, and urgency. Learn what affects the price of leaks, faucets, drains, and pipe repairs.",
-				estimate: "200–1200 EGP",
-				category: "Plumbing",
-				readTime: "4 min read",
-			},
-			{
-				title: "What to Expect from an AC Service Visit",
-				description:
-					"From routine cleaning to gas refills and full installs, here's how AC pricing works and how to spot a fair offer before you book.",
-				estimate: "150–900 EGP",
-				category: "AC Services",
-				readTime: "5 min read",
-			},
-			{
-				title: "Hiring an Electrician: A Quick Cost Guide",
-				description:
-					"Wiring faults, new outlets, and panel upgrades each carry different rates. Understand what drives the price of safe electrical work.",
-				estimate: "100–800 EGP",
-				category: "Electrical Works",
-				readTime: "3 min read",
-			},
-		],
 	},
 	downloadApp: {
 		headingPrefix: "Everything You Need in ",
@@ -333,32 +307,6 @@ const ar: Dictionary = {
 		heading: "مواضيع شائعة",
 		estimatedCost: "التكلفة التقديرية:",
 		readMore: "اقرأ المزيد",
-		articles: [
-			{
-				title: "كم تكلفة إصلاح السباكة؟",
-				description:
-					"تختلف تكاليف السباكة حسب المشكلة والقطع المطلوبة ومدى الإلحاح. تعرّف على ما يؤثر في سعر إصلاح التسريبات والحنفيات والمصارف والأنابيب.",
-				estimate: "٢٠٠–١٢٠٠ ج.م",
-				category: "السباكة",
-				readTime: "قراءة ٤ دقائق",
-			},
-			{
-				title: "ماذا تتوقع من زيارة صيانة التكييف؟",
-				description:
-					"من التنظيف الدوري إلى شحن الغاز والتركيب الكامل، إليك كيف تُحتسب أسعار التكييف وكيف تميّز العرض العادل قبل الحجز.",
-				estimate: "١٥٠–٩٠٠ ج.م",
-				category: "خدمات التكييف",
-				readTime: "قراءة ٥ دقائق",
-			},
-			{
-				title: "توظيف كهربائي: دليل سريع للتكلفة",
-				description:
-					"أعطال الأسلاك والمنافذ الجديدة وترقية اللوحات لكل منها سعره. افهم ما يحدد تكلفة الأعمال الكهربائية الآمنة.",
-				estimate: "١٠٠–٨٠٠ ج.م",
-				category: "الأعمال الكهربائية",
-				readTime: "قراءة ٣ دقائق",
-			},
-		],
 	},
 	downloadApp: {
 		headingPrefix: "كل ما تحتاجه في ",
