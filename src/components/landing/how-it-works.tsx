@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 import { Highlighter } from "@/components/ui/highlighter";
 import { Reveal } from "@/components/ui/reveal";
-import { useT } from "@/lib/i18n/language-provider";
+import { useLanguage } from "@/lib/i18n/language-provider";
 
 type StepLayout = "vertical" | "grid" | "horizontal";
 
@@ -100,8 +100,8 @@ function StepPath({
 export function HowItWorks() {
 	const layout = useStepLayout();
 	const isMobile = layout === "vertical";
-	const t = useT();
-	const rtl = t.nav.switchTo === "EN";
+	const { t, locale } = useLanguage();
+	const rtl = locale === "ar";
 	return (
 		<section
 			id="how-it-works"
