@@ -17,8 +17,13 @@ const en = {
 	},
 	hero: {
 		title: "Find Trusted Service Professionals Near You",
-		subtitle:
-			"Describe your request, receive offers from skilled professionals, and choose the best one for your needs.",
+		points: [
+			{
+				text: "Post your request, get offers from ",
+				highlight: "verified professional workers",
+			},
+			{ text: "Compare, choose, and hire ", highlight: "with confidence" },
+		],
 		searchPrompt: "What service do you need today?",
 		searchPlaceholder: "Search for a service or area",
 		search: "Search",
@@ -160,8 +165,17 @@ const en = {
 			categories: "Categories",
 			professionals: "Professionals",
 			about: "About",
-			contact: "Contact",
+			contact: "Contact Us",
 		},
+		copyright: "© {year} Kaiizen LLC. All rights reserved.",
+	},
+	contact: {
+		title: "Contact Us",
+		message:
+			"Have a question or need a hand? Send us an email and we'll get back to you.",
+		copyEmail: "Copy email",
+		copied: "Copied!",
+		close: "Close",
 	},
 };
 
@@ -186,8 +200,10 @@ const ar: Dictionary = {
 	},
 	hero: {
 		title: "اعثر على محترفي خدمات موثوقين بالقرب منك",
-		subtitle:
-			"صِف طلبك، واستقبل عروضًا من محترفين مهرة، واختر الأفضل لاحتياجاتك.",
+		points: [
+			{ text: "انشر طلبك واستقبل عروضًا من ", highlight: "محترفين موثوقين" },
+			{ text: "قارن واختر ووظّف ", highlight: "بثقة تامة" },
+		],
 		searchPrompt: "ما الخدمة التي تحتاجها اليوم؟",
 		searchPlaceholder: "ابحث عن خدمة أو منطقة",
 		search: "بحث",
@@ -326,6 +342,14 @@ const ar: Dictionary = {
 			about: "من نحن",
 			contact: "تواصل معنا",
 		},
+		copyright: "© {year} Kaiizen LLC. جميع الحقوق محفوظة.",
+	},
+	contact: {
+		title: "تواصل معنا",
+		message: "لديك سؤال أو تحتاج إلى مساعدة؟ راسلنا عبر البريد الإلكتروني وسنعاود الرد عليك.",
+		copyEmail: "نسخ البريد الإلكتروني",
+		copied: "تم النسخ!",
+		close: "إغلاق",
 	},
 };
 

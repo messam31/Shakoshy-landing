@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "motion/react";
 import Image from "next/image";
 
 import { Highlighter } from "@/components/ui/highlighter";
@@ -18,16 +19,34 @@ const serviceImages = [
   "/service-roof.webp",
 ];
 
-function ServiceCard({ label, src }: { label: string; src: string }) {
+function ServiceCard({
+  label,
+  src,
+  index,
+}: {
+  label: string;
+  src: string;
+  index: number;
+}) {
   return (
-    <div className="flex flex-1 justify-center lg:basis-0">
-      <div className="border-card-border bg-card flex w-full max-w-52 flex-col items-center gap-1 rounded-2xl border border-dashed py-4 md:max-w-none lg:px-6 lg:py-6">
+    <motion.div
+      className="flex flex-1 justify-center lg:basis-0"
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.5, delay: index * 0.05, ease: "easeOut" }}
+    >
+      <motion.div
+        className="border-card-border bg-card flex w-full max-w-52 flex-col items-center gap-1 rounded-2xl border border-dashed py-4 md:max-w-none lg:px-6 lg:py-6"
+        whileHover={{ y: -6 }}
+        transition={{ type: "spring", stiffness: 300, damping: 18 }}
+      >
         <div className="relative h-28 w-full">
           <Image src={src} alt="" fill sizes="(max-width: 1440px) 20vw, 220px" className="object-contain" />
         </div>
         <span className="font-poppins text-foreground text-sm font-medium">{label}</span>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 
@@ -66,14 +85,14 @@ export function OurServices() {
         <div className="grid grid-cols-2 gap-2.5 sm:gap-6 lg:flex lg:flex-col">
           {/* Row 1 — shifted on desktop */}
           <div className="contents lg:ms-13 lg:flex lg:flex-nowrap lg:gap-6">
-            {row1.map((item) => (
-              <ServiceCard key={item.label} {...item} />
+            {row1.map((item, i) => (
+              <ServiceCard key={item.label} {...item} index={i} />
             ))}
           </div>
           {/* Row 2 */}
           <div className="contents lg:flex lg:flex-nowrap lg:gap-6">
-            {row2.map((item) => (
-              <ServiceCard key={item.label} {...item} />
+            {row2.map((item, i) => (
+              <ServiceCard key={item.label} {...item} index={i + row1.length} />
             ))}
           </div>
         </div>

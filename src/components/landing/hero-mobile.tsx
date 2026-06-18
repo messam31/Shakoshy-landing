@@ -1,5 +1,6 @@
 "use client";
 
+import { CheckCircle2 } from "lucide-react";
 import { motion, type Variants } from "motion/react";
 
 import { HeroMedia } from "@/components/landing/hero-media";
@@ -35,12 +36,23 @@ export function HeroMobile({ className }: { className?: string }) {
 						{t.hero.title}
 					</motion.h1>
 
-					<motion.p
-						variants={item}
-						className="text-foreground pb-6 text-start text-lg"
-					>
-						{t.hero.subtitle}
-					</motion.p>
+					<ul className="flex flex-col gap-4 pb-6">
+						{t.hero.points.map((point) => (
+							<motion.li
+								key={point.highlight}
+								variants={item}
+								className="text-foreground flex items-start gap-3 text-start text-lg"
+							>
+								<CheckCircle2 className="text-primary mt-1 size-5 shrink-0" />
+								<span>
+									{point.text}
+									<span className="text-primary font-bold">
+										{point.highlight}
+									</span>
+								</span>
+							</motion.li>
+						))}
+					</ul>
 
 					{/* Search disabled for now — not yet functional.
 					<motion.div variants={item} className="mt-auto">
