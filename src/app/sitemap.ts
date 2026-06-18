@@ -43,5 +43,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
 		}));
 	});
 
-	return [...home, ...articleEntries];
+	const legalEntries: MetadataRoute.Sitemap = [
+		"privacy",
+		"delete-account",
+	].flatMap((path) => {
+		const languages = {
+			en: `${siteUrl}/en/${path}`,
+			ar: `${siteUrl}/ar/${path}`,
+		};
+		return (["en", "ar"] as const).map((lang) => ({
+			url: `${siteUrl}/${lang}/${path}`,
+			lastModified,
+			changeFrequency: "yearly" as const,
+			priority: 0.3,
+			alternates: { languages },
+		}));
+	});
+
+	return [...home, ...articleEntries, ...legalEntries];
 }

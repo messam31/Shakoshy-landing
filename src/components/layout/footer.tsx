@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { ContactDialog } from "@/components/layout/contact-dialog";
-import { useT } from "@/lib/i18n/language-provider";
+import { useLanguage } from "@/lib/i18n/language-provider";
 
 const FOOTER_LINKS = [
 	{ href: "#how-it-works", key: "howItWorks" },
@@ -35,11 +35,13 @@ const SOCIALS = [
 ];
 
 export function Footer() {
-	const t = useT();
+	const { locale, t } = useLanguage();
 	const copyright = t.footer.copyright.replace(
 		"{year}",
 		String(new Date().getFullYear()),
 	);
+	const linkClass =
+		"text-muted-foreground hover:text-foreground inline-flex min-h-11 items-center text-base";
 	return (
 		<footer className="border-border bg-background border-t">
 			<div className="font-poppins mx-auto flex max-w-7xl flex-col items-center gap-8 px-6 py-16 lg:flex-row lg:justify-between lg:gap-6 lg:py-14">
@@ -55,15 +57,17 @@ export function Footer() {
 
 				<nav className="flex max-w-md flex-wrap justify-center gap-x-10 gap-y-4 lg:max-w-none">
 					{FOOTER_LINKS.map((link) => (
-						<a
-							key={link.href}
-							href={link.href}
-							className="text-muted-foreground hover:text-foreground inline-flex min-h-11 items-center text-base"
-						>
+						<a key={link.href} href={link.href} className={linkClass}>
 							{t.footer.links[link.key]}
 						</a>
 					))}
 					<ContactDialog />
+					<Link href={`/${locale}/privacy`} className={linkClass}>
+						{t.footer.links.privacy}
+					</Link>
+					<Link href={`/${locale}/delete-account`} className={linkClass}>
+						{t.footer.links.deleteAccount}
+					</Link>
 				</nav>
 
 				<div className="flex items-center gap-4">
