@@ -48,6 +48,7 @@ export function ArticleCard({
 				<div className="mt-auto flex px-1 pt-2">
 					<Button
 						className="h-auto w-full rounded-sm py-3"
+						nativeButton={false}
 						render={<Link href={href} />}
 					>
 						{readMoreLabel}

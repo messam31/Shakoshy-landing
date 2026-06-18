@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { ContactDialog } from "@/components/layout/contact-dialog";
 import { useT } from "@/lib/i18n/language-provider";
 
 const FOOTER_LINKS = [
@@ -10,9 +11,6 @@ const FOOTER_LINKS = [
 	{ href: "#categories", key: "categories" },
 	{ href: "#professionals", key: "professionals" },
 	{ href: "#top", key: "about" }, // #top = hero section (valid)
-	// FIXME: no element with id="contact" exists on the page yet. Broken anchor.
-	// Out of scope to add a contact section here; wire up once one exists.
-	{ href: "#contact", key: "contact" },
 ] as const;
 
 const SOCIALS = [
@@ -38,6 +36,10 @@ const SOCIALS = [
 
 export function Footer() {
 	const t = useT();
+	const copyright = t.footer.copyright.replace(
+		"{year}",
+		String(new Date().getFullYear()),
+	);
 	return (
 		<footer className="border-border bg-background border-t">
 			<div className="font-poppins mx-auto flex max-w-7xl flex-col items-center gap-8 px-6 py-16 lg:flex-row lg:justify-between lg:gap-6 lg:py-14">
@@ -61,6 +63,7 @@ export function Footer() {
 							{t.footer.links[link.key]}
 						</a>
 					))}
+					<ContactDialog />
 				</nav>
 
 				<div className="flex items-center gap-4">
@@ -77,6 +80,12 @@ export function Footer() {
 						</a>
 					))}
 				</div>
+			</div>
+
+			<div className="border-border border-t">
+				<p className="font-poppins text-muted-foreground mx-auto max-w-7xl px-6 py-6 text-center text-sm">
+					{copyright}
+				</p>
 			</div>
 		</footer>
 	);
