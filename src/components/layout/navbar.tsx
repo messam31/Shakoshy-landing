@@ -11,14 +11,16 @@ import {
 } from "react";
 
 import { ChevronDown } from "lucide-react";
+import GB from "country-flag-icons/react/3x2/GB";
+import SA from "country-flag-icons/react/3x2/SA";
 
 import { Button } from "@/components/ui/button";
 import { swapLocaleInPath, type Locale } from "@/lib/i18n/dictionaries";
 import { useLanguage } from "@/lib/i18n/language-provider";
 
-const LANGUAGES: { code: Locale; label: string }[] = [
-	{ code: "en", label: "English" },
-	{ code: "ar", label: "العربية" },
+const LANGUAGES: { code: Locale; label: string; Flag: typeof GB }[] = [
+	{ code: "en", label: "English", Flag: GB },
+	{ code: "ar", label: "العربية", Flag: SA },
 ];
 
 function LanguageDropdown({ className }: { className?: string }) {
@@ -80,6 +82,7 @@ function LanguageDropdown({ className }: { className?: string }) {
 	};
 
 	const current = LANGUAGES.find((l) => l.code === locale) ?? LANGUAGES[0];
+	const CurrentFlag = current.Flag;
 
 	return (
 		<div ref={ref} className={`relative ${className ?? ""}`}>
@@ -92,6 +95,7 @@ function LanguageDropdown({ className }: { className?: string }) {
 				aria-label={`Language: ${current.label}`}
 				className="text-foreground flex items-center gap-1.5 rounded-full font-normal lg:px-6 lg:text-base xl:text-lg"
 			>
+				<CurrentFlag aria-hidden className="h-4 w-6 shrink-0 rounded-[3px]" />
 				{current.label}
 				<ChevronDown
 					className={`size-4 transition-transform ${open ? "rotate-180" : ""}`}
@@ -105,19 +109,23 @@ function LanguageDropdown({ className }: { className?: string }) {
 					onKeyDown={onListKeyDown}
 					className="shadow-card bg-popover absolute end-0 z-50 mt-2 min-w-36 overflow-hidden rounded-2xl border border-border py-1"
 				>
-					{LANGUAGES.map((l) => (
-						<li key={l.code}>
-							<Link
-								href={swapLocaleInPath(pathname, l.code)}
-								role="option"
-								aria-selected={l.code === locale}
-								onClick={() => setOpen(false)}
-								className={`hover:bg-surface-cream flex min-h-11 w-full items-center px-4 py-2 text-start text-sm ${l.code === locale ? "text-primary font-medium" : "text-foreground"}`}
-							>
-								{l.label}
-							</Link>
-						</li>
-					))}
+					{LANGUAGES.map((l) => {
+						const Flag = l.Flag;
+						return (
+							<li key={l.code}>
+								<Link
+									href={swapLocaleInPath(pathname, l.code)}
+									role="option"
+									aria-selected={l.code === locale}
+									onClick={() => setOpen(false)}
+									className={`hover:bg-surface-cream flex min-h-11 w-full items-center gap-2.5 px-4 py-2 text-start text-sm ${l.code === locale ? "text-primary font-medium" : "text-foreground"}`}
+								>
+									<Flag aria-hidden className="h-4 w-6 shrink-0 rounded-[3px]" />
+									{l.label}
+								</Link>
+							</li>
+						);
+					})}
 				</ul>
 			)}
 		</div>
