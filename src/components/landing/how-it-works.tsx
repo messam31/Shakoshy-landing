@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -56,10 +57,51 @@ function StepCard({ title, description, image }: Step) {
 	);
 }
 
+function StepPath({
+	layout,
+	rtl,
+}: {
+	layout: "vertical" | "horizontal";
+	rtl: boolean;
+}) {
+	const reduce = useReducedMotion();
+	const horizontal = layout === "horizontal";
+	// Mirror the horizontal draw direction for RTL (draw end -> start).
+	const x1 = horizontal ? (rtl ? 94 : 6) : 50;
+	const x2 = horizontal ? (rtl ? 6 : 94) : 50;
+	const y1 = horizontal ? 22 : 6;
+	const y2 = horizontal ? 22 : 94;
+	return (
+		<svg
+			aria-hidden
+			className="pointer-events-none absolute inset-0 -z-10 h-full w-full"
+			preserveAspectRatio="none"
+			viewBox="0 0 100 100"
+		>
+			<motion.line
+				x1={x1}
+				y1={y1}
+				x2={x2}
+				y2={y2}
+				stroke="var(--color-primary)"
+				strokeOpacity={0.45}
+				strokeWidth={2}
+				strokeLinecap="round"
+				vectorEffect="non-scaling-stroke"
+				initial={reduce ? { pathLength: 1 } : { pathLength: 0 }}
+				whileInView={{ pathLength: 1 }}
+				viewport={{ once: true, margin: "-80px" }}
+				transition={reduce ? { duration: 0 } : { duration: 1.2, ease: "easeInOut" }}
+			/>
+		</svg>
+	);
+}
+
 export function HowItWorks() {
 	const layout = useStepLayout();
 	const isMobile = layout === "vertical";
 	const t = useT();
+	const rtl = t.nav.switchTo === "EN";
 	return (
 		<section
 			id="how-it-works"
@@ -84,7 +126,8 @@ export function HowItWorks() {
 				</p>
 			</div>
 
-			<div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
+			<div className="relative grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
+				{layout !== "grid" && <StepPath layout={layout} rtl={rtl} />}
 				{t.howItWorks.steps.map((step, i) => (
 					<Reveal key={i} delay={i * 0.12}>
 						<StepCard
