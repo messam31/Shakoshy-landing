@@ -4,22 +4,27 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 import { Highlighter } from "@/components/ui/highlighter";
+import { Reveal } from "@/components/ui/reveal";
 import { useT } from "@/lib/i18n/language-provider";
 
-function useIsMobile() {
-	const [isMobile, setIsMobile] = useState(() =>
-		typeof window !== "undefined"
-			? window.matchMedia("(max-width: 639px)").matches
-			: false,
-	);
+type StepLayout = "vertical" | "grid" | "horizontal";
+
+function useStepLayout(): StepLayout {
+	const [layout, setLayout] = useState<StepLayout>("grid");
 	useEffect(() => {
-		const mq = window.matchMedia("(max-width: 639px)");
-		const update = () => setIsMobile(mq.matches);
+		const mqV = window.matchMedia("(max-width: 639px)");
+		const mqH = window.matchMedia("(min-width: 1280px)");
+		const update = () =>
+			setLayout(mqV.matches ? "vertical" : mqH.matches ? "horizontal" : "grid");
 		update();
-		mq.addEventListener("change", update);
-		return () => mq.removeEventListener("change", update);
+		mqV.addEventListener("change", update);
+		mqH.addEventListener("change", update);
+		return () => {
+			mqV.removeEventListener("change", update);
+			mqH.removeEventListener("change", update);
+		};
 	}, []);
-	return isMobile;
+	return layout;
 }
 
 const STEP_IMAGES = [
@@ -52,7 +57,8 @@ function StepCard({ title, description, image }: Step) {
 }
 
 export function HowItWorks() {
-	const isMobile = useIsMobile();
+	const layout = useStepLayout();
+	const isMobile = layout === "vertical";
 	const t = useT();
 	return (
 		<section
@@ -80,12 +86,13 @@ export function HowItWorks() {
 
 			<div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
 				{t.howItWorks.steps.map((step, i) => (
-					<StepCard
-						key={i}
-						title={step.title}
-						description={step.description}
-						image={STEP_IMAGES[i]}
-					/>
+					<Reveal key={i} delay={i * 0.12}>
+						<StepCard
+							title={step.title}
+							description={step.description}
+							image={STEP_IMAGES[i]}
+						/>
+					</Reveal>
 				))}
 			</div>
 		</section>
