@@ -41,9 +41,9 @@ export function HeroMobile({ className }: { className?: string }) {
 							<motion.li
 								key={point.highlight}
 								variants={item}
-								className="text-foreground flex items-start gap-3 text-start text-lg"
+								className="text-foreground flex items-start gap-3 text-start text-lg md:text-2xl"
 							>
-								<CheckCircle2 className="text-primary mt-1 size-5 shrink-0" />
+								<CheckCircle2 className="text-primary mt-1 size-5 shrink-0 md:size-7" />
 								<span>
 									{point.text}
 									<span className="text-primary font-bold">

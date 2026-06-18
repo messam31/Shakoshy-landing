@@ -36,14 +36,14 @@ export function HeroDesktop({ className }: { className?: string }) {
 						{t.hero.title}
 					</motion.h1>
 
-					<ul className="flex max-w-md flex-col gap-4 pb-6">
+					<ul className="flex max-w-md flex-col gap-4 pb-6 lg:max-w-lg">
 						{t.hero.points.map((point) => (
 							<motion.li
 								key={point.highlight}
 								variants={item}
-								className="text-muted-foreground flex items-start gap-3 text-lg"
+								className="text-muted-foreground flex items-start gap-3 text-lg lg:text-xl xl:text-2xl"
 							>
-								<CheckCircle2 className="text-primary mt-1 size-5 shrink-0" />
+								<CheckCircle2 className="text-primary mt-1 size-5 shrink-0 lg:size-6" />
 								<span>
 									{point.text}
 									<span className="text-primary font-bold">
