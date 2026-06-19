@@ -177,7 +177,7 @@ const en = {
 			privacy: "Privacy Policy",
 			deleteAccount: "Delete Account",
 		},
-		copyright: "© {year} Kaiizen LLC. All rights reserved.",
+		copyright: "© {year} Kaiizn LLC. All rights reserved.",
 	},
 	contact: {
 		title: "Contact Us",
@@ -359,11 +359,12 @@ const ar: Dictionary = {
 			privacy: "سياسة الخصوصية",
 			deleteAccount: "حذف الحساب",
 		},
-		copyright: "© {year} Kaiizen LLC. جميع الحقوق محفوظة.",
+		copyright: "جميع الحقوق محفوظة. © {year} Kaiizn LLC.",
 	},
 	contact: {
 		title: "تواصل معنا",
-		message: "لديك سؤال أو تحتاج إلى مساعدة؟ راسلنا عبر البريد الإلكتروني وسنعاود الرد عليك.",
+		message:
+			"لديك سؤال أو تحتاج إلى مساعدة؟ راسلنا عبر البريد الإلكتروني وسنعاود الرد عليك.",
 		copyEmail: "نسخ البريد الإلكتروني",
 		copied: "تم النسخ!",
 		close: "إغلاق",
