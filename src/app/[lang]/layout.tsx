@@ -60,7 +60,7 @@ export async function generateMetadata({
 		formatDetection: { email: false, address: false, telephone: false },
 		alternates: {
 			canonical: `/${lang}`,
-			languages: { en: "/en", ar: "/ar", "x-default": "/en" },
+			languages: { en: "/en", ar: "/ar", "x-default": "/ar" },
 		},
 		openGraph: {
 			type: "website",
@@ -155,12 +155,9 @@ export default async function LangLayout({
 			)}
 		>
 			<body className="flex min-h-full flex-col">
-				<script
-					type="application/ld+json"
-					dangerouslySetInnerHTML={{
-						__html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
-					}}
-				/>
+				<script type="application/ld+json">
+					{JSON.stringify(structuredData).replace(/</g, "\\u003c")}
+				</script>
 				<LanguageProvider locale={lang}>
 					<main className="flex-1">{children}</main>
 					<Footer />

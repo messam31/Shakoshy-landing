@@ -37,7 +37,7 @@ export async function generateMetadata({
 		description: article.excerpt,
 		alternates: {
 			canonical: path,
-			languages: { en: enPath, ar: arPath, "x-default": enPath },
+			languages: { en: enPath, ar: arPath, "x-default": arPath },
 		},
 		openGraph: {
 			type: "article",
@@ -92,12 +92,9 @@ export default async function ArticlePage({
 
 	return (
 		<>
-			<script
-				type="application/ld+json"
-				dangerouslySetInnerHTML={{
-					__html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-				}}
-			/>
+			<script type="application/ld+json">
+				{JSON.stringify(jsonLd).replace(/</g, "\\u003c")}
+			</script>
 			<ArticleHero
 				locale={lang}
 				category={article.category}

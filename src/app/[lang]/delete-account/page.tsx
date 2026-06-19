@@ -27,7 +27,7 @@ export async function generateMetadata({
 			languages: {
 				en: "/en/delete-account",
 				ar: "/ar/delete-account",
-				"x-default": "/en/delete-account",
+				"x-default": "/ar/delete-account",
 			},
 		},
 		openGraph: {

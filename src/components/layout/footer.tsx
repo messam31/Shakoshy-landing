@@ -36,6 +36,13 @@ const SOCIALS = [
 
 export function Footer() {
 	const { locale, t } = useLanguage();
+	const isArabic = locale === "ar";
+	const logo = {
+		src: isArabic ? "/ArabicLogo.svg" : "/logo.svg",
+		alt: isArabic ? "شاكوشي" : "Shakoshy",
+		width: isArabic ? 110 : 172,
+		height: isArabic ? 40 : 34,
+	};
 	const copyright = t.footer.copyright.replace(
 		"{year}",
 		String(new Date().getFullYear()),
@@ -45,12 +52,12 @@ export function Footer() {
 	return (
 		<footer className="border-border bg-background border-t">
 			<div className="font-poppins mx-auto flex max-w-7xl flex-col items-center gap-8 px-6 py-16 lg:flex-row lg:justify-between lg:gap-6 lg:py-14">
-				<Link href="/" aria-label="Shakoshy home">
+				<Link href={`/${locale}`} aria-label="Shakoshy home">
 					<Image
-						src="/logo.svg"
-						alt="Shakoshy"
-						width={172}
-						height={34}
+						src={logo.src}
+						alt={logo.alt}
+						width={logo.width}
+						height={logo.height}
 						className="h-8 w-auto"
 					/>
 				</Link>

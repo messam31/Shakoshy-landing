@@ -376,7 +376,7 @@ export type Locale = keyof typeof dictionaries;
 export type { Dictionary };
 
 export const locales: Locale[] = ["en", "ar"];
-export const defaultLocale: Locale = "en";
+export const defaultLocale: Locale = "ar";
 
 export function hasLocale(value: string): value is Locale {
 	return value in dictionaries;

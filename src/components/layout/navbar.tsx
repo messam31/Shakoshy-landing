@@ -134,11 +134,25 @@ function LanguageDropdown({ className }: { className?: string }) {
 
 export function Navbar() {
 	const { locale } = useLanguage();
+	const isArabic = locale === "ar";
+	const logo = {
+		src: isArabic ? "/ArabicLogo.svg" : "/logo.svg",
+		alt: isArabic ? "شاكوشي" : "Shakoshy",
+		width: isArabic ? 110 : 172,
+		height: isArabic ? 40 : 34,
+	};
 	return (
 		<header className="sticky top-0 z-50 px-4 pt-6 pb-2">
 			<nav className="font-poppins bg-background mx-auto flex h-nav max-w-5xl items-center justify-between rounded-full border-0 px-4 font-normal md:px-6 lg:max-w-6xl lg:px-8">
 				<Link href={`/${locale}`} aria-label="Shakoshy home">
-					<Image src="/logo.svg" alt="Shakoshy" width={172} height={34} className="h-7 w-auto md:h-8 lg:h-9 xl:h-10" priority />
+					<Image
+						src={logo.src}
+						alt={logo.alt}
+						width={logo.width}
+						height={logo.height}
+						className="h-7 w-auto md:h-8 lg:h-9 xl:h-10"
+						priority
+					/>
 				</Link>
 
 				<LanguageDropdown />
