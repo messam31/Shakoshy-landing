@@ -1,7 +1,7 @@
 export type AppKind = "customer" | "worker";
 export type MobilePlatform = "ios" | "android";
 
-// TODO: replace the iOS links once the App Store listings are live.
+// TODO: replace the customer iOS link once its App Store listing is live.
 export const storeLinks: Record<AppKind, Record<MobilePlatform, string>> = {
   customer: {
     ios: "#",
@@ -9,7 +9,7 @@ export const storeLinks: Record<AppKind, Record<MobilePlatform, string>> = {
       "https://play.google.com/store/apps/details?id=com.shakoshy.app",
   },
   worker: {
-    ios: "#",
+    ios: "https://apps.apple.com/eg/app/shakoshy-worker/id6777790443",
     android:
       "https://play.google.com/store/apps/details?id=com.shakoshy.worker",
   },
